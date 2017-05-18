@@ -7,26 +7,26 @@ var path = require('path');
 var runSequence = require('run-sequence');
 
 var paths = {
-	src: './src/',
-	dist: './dist/'
+  src: './src/',
+  dist: './dist/'
 };
 
 gulp.task('clean', function() {
-	return del(paths.dist);
+  return del(paths.dist);
 });
 
 gulp.task('js-compile', function() {
-	var appSrc = path.join(paths.src, 'js', '**', '*.js');
-	var libSrc = [
-		'node_modules/lodash/**/*.js',
-		'node_modules/lodash/package.json'
-	];
-	var destPath = path.join(paths.dist, 'js');
-	var srcFiles = [...libSrc, appSrc];
+  var appSrc = path.join(paths.src, 'js', '**', '*.js');
+  var libSrc = [
+    'node_modules/lodash/**/*.js',
+    'node_modules/lodash/package.json'
+  ];
+  var destPath = path.join(paths.dist, 'js');
+  var srcFiles = [...libSrc, appSrc];
 
   return gulp.src(srcFiles, {base: './'})
-  	.pipe(debug({title: '[src js]'}))
-	  .pipe(closureCompiler({
+    .pipe(debug({title: '[src js]'}))
+    .pipe(closureCompiler({
       compilation_level: 'SIMPLE',
       dependency_mode: 'STRICT',
       entry_point: path.join('.', 'src', 'js', 'main.js'),
@@ -42,19 +42,19 @@ gulp.task('js-compile', function() {
 });
 
 gulp.task('html', function() {
-	var srcFiles = path.join(paths.src, '*.html');
-	var destPath = path.join(paths.dist);
+  var srcFiles = path.join(paths.src, '*.html');
+  var destPath = path.join(paths.dist);
 
-	return gulp.src(srcFiles)
-		.pipe(gulp.dest(destPath));
+  return gulp.src(srcFiles)
+    .pipe(gulp.dest(destPath));
 });
 
 gulp.task('build', function() {
-	return runSequence(
-		'clean',
-		[
-			'html',
-			'js-compile'
-		]
-	);
+  return runSequence(
+    'clean',
+    [
+      'html',
+      'js-compile'
+    ]
+  );
 })
