@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "closurecompiler-externs": "^1.0.4",
     "del": "^2.2.2",
     "google-closure-compiler": "^20170423.0.0",
     "gulp": "^3.9.1",

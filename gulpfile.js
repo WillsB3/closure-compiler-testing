@@ -8,7 +8,8 @@ var runSequence = require('run-sequence');
 
 var paths = {
   src: './src/',
-  dist: './dist/'
+  dist: './dist/',
+  npm: './node_modules/'
 };
 
 gulp.task('clean', function() {
@@ -25,11 +26,14 @@ gulp.task('js-compile', function() {
   var srcFiles = [...libSrc, appSrc];
 
   return gulp.src(srcFiles, {base: './'})
-    .pipe(debug({title: '[src js]'}))
+    // .pipe(debug({title: '[src js]'}))
     .pipe(closureCompiler({
       compilation_level: 'SIMPLE',
       dependency_mode: 'STRICT',
       entry_point: path.join('.', 'src', 'js', 'main.js'),
+      externs: [
+        path.join(paths.npm, 'closurecompiler-externs', 'core.js')
+      ],
       warning_level: 'VERBOSE',
       language_in: 'ECMASCRIPT6_STRICT',
       language_out: 'ECMASCRIPT5_STRICT',
