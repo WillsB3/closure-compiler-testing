@@ -19,8 +19,8 @@ gulp.task('clean', function() {
 gulp.task('js-compile', function() {
   var appSrc = path.join(paths.src, 'js', '**', '*.js');
   var libSrc = [
-    'node_modules/lodash/**/*.js',
-    'node_modules/lodash/package.json'
+    // 'node_modules/lodash/**/*.js',
+    // 'node_modules/lodash/package.json'
   ];
   var destPath = path.join(paths.dist, 'js');
   var srcFiles = [...libSrc, appSrc];
@@ -29,17 +29,16 @@ gulp.task('js-compile', function() {
     // .pipe(debug({title: '[src js]'}))
     .pipe(closureCompiler({
       compilation_level: 'SIMPLE',
+      create_source_map: 'example.map',
       dependency_mode: 'STRICT',
       entry_point: path.join('.', 'src', 'js', 'main.js'),
       externs: [
-        path.join(paths.npm, 'closurecompiler-externs', 'core.js')
+        // path.join(paths.npm, 'closurecompiler-externs', 'core.js')
       ],
       warning_level: 'VERBOSE',
       language_in: 'ECMASCRIPT6_STRICT',
       language_out: 'ECMASCRIPT5_STRICT',
-      module_resolution: 'NODE',
       output_wrapper: '(function(){\n%output%\n}).call(this)',
-      process_common_js_modules: true,
       js_output_file: 'output.min.js'
     }))
     .pipe(gulp.dest(destPath));

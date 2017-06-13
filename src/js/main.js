@@ -1,12 +1,11 @@
-import uniqueId from 'lodash/uniqueId';
-
 import { log } from './log.js';
 
 export default go;
 
+let id = 0;
 
 function go() {
-	const id = uniqueId();
+	id = id + 1;
 	log(`id is: ${id}`);
 }
 
