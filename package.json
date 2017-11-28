@@ -9,12 +9,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "closurecompiler-externs": "^1.0.4",
-    "del": "^2.2.2",
+    "closurecompiler-externs": "1.0.4",
+    "del": "2.2.2",
     "google-closure-compiler": "^20170423.0.0",
-    "gulp": "^3.9.1",
-    "gulp-debug": "^3.1.0",
-    "lodash": "^4.17.4",
-    "run-sequence": "^1.2.2"
+    "gulp": "3.9.1",
+    "gulp-debug": "3.1.0",
+    "lodash": "4.17.4",
+    "run-sequence": "1.2.2"
   }
 }
